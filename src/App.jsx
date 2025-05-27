@@ -1,21 +1,26 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
-import { useEffect } from 'react';
-import { supabase } from './supabaseClient';
+import { Routes, Route, Link } from 'react-router-dom';
+import Login from './pages/Login';
+import Register from './pages/Register';
+import Dashboard from './pages/Dashboard';
 
 function App() {
-  useEffect(() => {
-    async function fetchRoles() {
-      const { data, error } = await supabase.from('event_types').select('*');
-      console.log('Types:', data, 'Error:', error);
-    }
-    fetchRoles();
-  }, []);
+  return (
+    <>
+      <nav>
+        <Link to="/">Home</Link> |{" "}
+        <Link to="/login">Login</Link> |{" "}
+        <Link to="/register">Register</Link> |{" "}
+        <Link to="/dashboard">Dashboard</Link>
+      </nav>
 
-  return <div>Hello LMS</div>;
+      <Routes>
+        <Route path="/" element={<h1>Welcome to LMS</h1>} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/dashboard" element={<Dashboard />} />
+      </Routes>
+    </>
+  );
 }
 
 export default App;
