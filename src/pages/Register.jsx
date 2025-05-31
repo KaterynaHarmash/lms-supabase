@@ -6,12 +6,13 @@ import PageWrapper from "../components/PageWrapper";
 import PageTitle from "../components/PageTitle";
 import FieldGroup from "../components/FieldGroup";
 import Button from "../components/Button";
+import AuthPageLayout from "../components/AuthPageLayout";
 
 export default function Register() {
   const navigate = useNavigate();
 
   return (
-    <PageWrapper>
+    <AuthPageLayout>
       <PageTitle>Sign Up</PageTitle>
       <Formik
         initialValues={{ fullName: "", email: "", password: "" }}
@@ -69,6 +70,6 @@ export default function Register() {
           </Form>
         )}
       </Formik>
-    </PageWrapper>
+    </AuthPageLayout>
   );
 }

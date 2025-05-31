@@ -6,12 +6,23 @@ import PageWrapper from "../components/PageWrapper";
 import PageTitle from "../components/PageTitle";
 import FieldGroup from "../components/FieldGroup";
 import Button from "../components/Button";
+import AuthPageLayout from "../components/AuthPageLayout";
 
 export default function Login() {
   const navigate = useNavigate();
 
+  const handleGoogleLogin = async () => {
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: "google",
+    });
+
+    if (error) {
+      console.error("Google login error:", error.message);
+    }
+  };
+
   return (
-    <PageWrapper>
+    <AuthPageLayout>
       <PageTitle>Sign In</PageTitle>
       <Formik
         initialValues={{ email: "", password: "" }}
@@ -96,9 +107,16 @@ export default function Login() {
             >
               Увійти
             </Button>
+            <button
+              type="button"
+              onClick={handleGoogleLogin}
+              className="mt-4 w-full bg-white text-black py-2 px-4 rounded hover:bg-gray-100"
+            >
+              Увійти через Google
+            </button>
           </Form>
         )}
       </Formik>
-    </PageWrapper>
+    </AuthPageLayout>
   );
 }

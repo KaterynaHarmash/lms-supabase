@@ -3,17 +3,13 @@ import { ToastContainer } from 'react-toastify';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import Dashboard from './pages/Dashboard';
+import Navbar from "./components/Navbar";
 
 
 function App() {
   return (
     <>
-      <nav>
-        <Link to="/">Home</Link> |{" "}
-        <Link to="/login">Login</Link> |{" "}
-        <Link to="/register">Register</Link> |{" "}
-        <Link to="/dashboard">Dashboard</Link>
-      </nav>
+      <Navbar />
 
       <Routes>
         <Route path="/" element={<h1>Welcome to LMS</h1>} />
